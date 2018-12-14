@@ -12,9 +12,9 @@ production:
   image: centos
   stage: deploy
   script:
-  - yum-config-manager --enable rhui-REGION-rhel-server-extras
+  - yum-config-manager --enable $(grep -B1 -i optional /etc/yum.repos.d/*)
   - yum update -yq
-  - yum install -y ruby-dev
+  - yum install -y ruby-devl
   - gem install dpl
   - dpl --provider="elasticbeanstalk" --access-key-id="$AWS_DOCKER_REACT_ACCESS_KEY" --secret-access-key="$AWS_DOCKER_REACT_SECRECT_KEY" --app="docker-react" --env="DockerReact-env" --region="eu-central-1"  --bucket_name="elasticbeanstalk-eu-central-1-852664985265" --bucket_path="docker-react"
   only: 
