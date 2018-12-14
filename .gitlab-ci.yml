@@ -1,23 +1,19 @@
-image: docker
-
-services:
-  - docker:dind
-
-before_script:
-  - docker build -t amarnaththillai/docker-react -f Dockerfile.dev .
-
-test:
+testStage : 
+  image: docker
   stage: test
+  services:
+    - docker:dind
+  before_script:
+    - docker build -t amarnaththillai/docker-react -f Dockerfile.dev .
   script:
     - docker run amarnaththillai/docker-react npm run test -- --coverage
 
 production: 
+  image: ubuntu
   stage: deploy
   script:
-  - apk update 
-  - apk add ruby-dev
-  - apk add libffi-dev
-  - gem install rdoc 
+  - apt-get update -yq
+  - apt-get install -y ruby-dev
   - gem install dpl
   - dpl --provider=elasticbeanstalk --access-key-id="$AWS_DOCKER_REACT_ACCESS_KEY" --secret-access-key="$AWS_DOCKER_REACT_SECRECT_KEY" --app="docker-react" --env="DockerReact-env" --region="eu-central-1"  --bucket_name="elasticbeanstalk-eu-central-1-852664985265" --bucket_path="docker-react"
   only: 
