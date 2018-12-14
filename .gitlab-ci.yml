@@ -12,7 +12,7 @@ test:
     - docker run amarnaththillai/docker-react npm run test -- --coverage
 
 production: 
-  stage: production
+  stage: deploy
   script:
   - apt-get update -yq
   - apt-get install -y ruby-dev
