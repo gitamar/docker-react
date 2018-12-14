@@ -1,4 +1,4 @@
-image: ubuntu
+image: docker:ubuntu
 
 services:
   - docker:dind
