@@ -16,7 +16,7 @@ production:
   - apt-get install -y ruby-dev
   - gem install dpl
   - echo "$AWS_DOCKER_REACT_ACCESS_KEY"
-  - dpl --provider=elasticbeanstalk --access-key-id="$AWS_DOCKER_REACT_ACCESS_KEY" --secret-access-key="$AWS_DOCKER_REACT_SECRECT_KEY" --app="docker-react" --env="DockerReact-env" --region="eu-central-1"  --bucket_name="elasticbeanstalk-eu-central-1-852664985265" --bucket_path="docker-react"
+  - dpl --provider="elasticbeanstalk" --access-key-id="$AWS_DOCKER_REACT_ACCESS_KEY" --secret-access-key="$AWS_DOCKER_REACT_SECRECT_KEY" --app="docker-react" --env="DockerReact-env" --region="eu-central-1"  --bucket_name="elasticbeanstalk-eu-central-1-852664985265" --bucket_path="docker-react"
   only: 
   - master
 
