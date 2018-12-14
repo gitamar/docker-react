@@ -1,4 +1,4 @@
-image: docker
+image: ubuntu
 
 services:
   - docker:dind
@@ -14,9 +14,8 @@ test:
 production: 
   stage: deploy
   script:
-  - apk update 
-  - apk add ruby-dev
-  - apk add libffi-dev
+  - apt-get update -yq
+  - apt-get install -y ruby-dev
   - gem install dpl
   - dpl --provider=elasticbeanstalk --access-key-id="$AWS_DOCKER_REACT_ACCESS_KEY" --secret-access-key="$AWS_DOCKER_REACT_SECRECT_KEY" --app="docker-react" --env="DockerReact-env" --region="eu-central-1"  --bucket_name="elasticbeanstalk-eu-central-1-852664985265" --bucket_path="docker-react"
   only: 
