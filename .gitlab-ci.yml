@@ -1,0 +1,11 @@
+image: docker:latest
+
+services:
+  - docker:dind
+
+before_script:
+  - docker build -t amarnaththillai/docker-react -f Dockerfile.dev .
+
+build_image:
+  script:
+    - docker run amarnaththillai/docker-react npm run test -- --coverage
