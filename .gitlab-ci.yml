@@ -7,7 +7,7 @@ testStage :
     - dnf config-manager --set-enabled docker-ce-test
     - dnf makecache
     - dnf -y install docker-ce
-    - systemctl start docker
+    - service docker start 
     - docker run hello-world
     - echo "docker installed"
   script:
