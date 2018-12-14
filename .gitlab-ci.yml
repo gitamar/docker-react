@@ -4,7 +4,7 @@ testStage :
   before_script:
     - dnf -y install dnf-plugins-core
     - dnf -y config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
-    - dnf -y install docker-ce
+    - dnf -y install docker-ce-stable
     - systemctl start docker
     - docker run hello-world
     - echo "docker installed"
