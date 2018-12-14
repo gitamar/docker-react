@@ -12,6 +12,7 @@ production:
   image: centos
   stage: deploy
   script:
+  - yum-config-manager --enable rhui-REGION-rhel-server-extras
   - yum update -yq
   - yum install -y ruby-dev
   - gem install dpl
